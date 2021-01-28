@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.http import Http404
 from django.template import loader
 
 from jobs.models import Job
@@ -13,3 +14,12 @@ def joblist(request):
         job.city_name = Cities[job.job_city][1]
         job.type_name = JobTypes[job.job_type][1]
     return render(request, 'joblist.html', context={'job_list': job_list})
+
+
+def detail(request, job_id):
+    try:
+        job = Job.objects.get(pk=job_id)
+        job.city_name = Cities[job.job_city][1]
+    except Job.DoesNotExist:
+        raise Http404('Job does not exist!')
+    return render(request, 'job.html', {'job': job})
