@@ -11,9 +11,20 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
+import platform
+from pathlib import Path
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+LOG_DIR = "/data/logs/recruitment/"
+
+if platform.system() == "Linux" or platform.system() == "Windows":
+    # linux or windows
+    Path(LOG_DIR).mkdir(parents=True, exist_ok=True)
+elif platform.system() == "Darwin" or platform.system() == "Mac":
+    # OS X,
+    # you could not create a folder at /data/logs dure to OS default policy
+    LOG_DIR = BASE_DIR
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
@@ -120,6 +131,58 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'simple': {  # exact format is not important, this is the minimum information
+            'format': '%(asctime)s %(name)-12s %(lineno)d %(levelname)-8s %(message)s',
+        },
+    },
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple',
+        },
+
+        'mail_admins': {  # Add Handler for mail_admins for `warning` and above
+            'level': 'ERROR',
+            'class': 'django.utils.log.AdminEmailHandler',
+        },
+        'file': {
+            # 'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'formatter': 'simple',
+            'filename': os.path.join(LOG_DIR, 'recruitment.admin.log'),
+        },
+
+        'performance': {
+            # 'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'formatter': 'simple',
+            'filename': os.path.join(LOG_DIR, 'recruitment.performance.log'),
+        },
+    },
+
+    'root': {
+        'handlers': ['console', 'file'],
+        'level': 'INFO',
+    },
+
+    'loggers': {
+        "django_python3_ldap": {
+            "handlers": ["console", "file"],
+            "level": "DEBUG",
+        },
+
+        "interview.performance": {
+            "handlers": ["console", "performance"],
+            "level": "INFO",
+            "propagate": False,
+        },
+    },
+}
 
 ### LDAP
 
