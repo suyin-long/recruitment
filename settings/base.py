@@ -222,4 +222,4 @@ LDAP_AUTH_CONNECTION_PASSWORD = None
 
 AUTHENTICATION_BACKENDS = {"django_python3_ldap.auth.LDAPBackend", 'django.contrib.auth.backends.ModelBackend', }
 
-# DINGTALK_WEB_HOOK = ""
+DINGTALK_WEB_HOOK = "https://oapi.dingtalk.com/robot/send?access_token=e1de0e4f0c274f7eb3e66e2490bac10454ca33111f550e847b17641566e9aac2"
