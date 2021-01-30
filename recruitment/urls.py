@@ -15,8 +15,11 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+from django.utils.translation import gettext as _
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^', include('jobs.urls')),
 ]
+
+admin.site.site_header = _('苏寅科技招聘管理系统')
