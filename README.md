@@ -7,7 +7,7 @@
 
 ## 运行条件
 - 机器上有安装有Python和Django
-- Python 3.6.8 && Django 1.11.4
+- Python 3.6.8 && Django 1.11.4 && django-grappelli-2.14.2
 - [参考链接](https://docs.djangoproject.com/)
 
 ## 如何运行
