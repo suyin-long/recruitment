@@ -11,13 +11,14 @@
 
 ## 主要依赖包
 
-- Python==3.6.8
--  Django==1.11.4 
+- Python==3.6.12
+-  Django==3.1.6
 - django-grappelli==2.14.2
 - django-python3-ldap==0.11.3
 - mysqlclient==2.0.3
 - DingtalkChatbot==1.5.2
-- django-registration-redux==1.10
+- django-registration-redux==2.9
+- django-bootstrap4==2.3.1
 
 ## 如何运行
 本地和生产环境分别运行如下命令

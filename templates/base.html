@@ -1,3 +1,13 @@
+{# Load the tag library #}
+{% load bootstrap4 %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
+
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
+
 <h1 style="margin: auto; width: 50%">苏寅科技开放职位</h1>
 <p></p>
 
@@ -16,6 +26,6 @@
         <p>欢迎你，期待加入我们，登录后可以提交简历</p>
     {% endif %}
 {% endblock %}
-<hr>
+
 {% block content %}
 {% endblock %}

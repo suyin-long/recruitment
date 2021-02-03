@@ -4,8 +4,6 @@
 
     <div style="margin:auto; width:50%;">
 
-        <a href="/joblist" style="color: blue">返回职位列表</a>
-
         {% if job %}
             <div class="position_name">
                 <h2>岗位名称：{{ job.job_name }}</h2>
@@ -27,7 +25,8 @@
             </div>
 
             <div class="apply_position">
-                <input type="button" class="btn btn-primary" style="width:120px;" value="申请" onclick="location.href='/resume/add/?apply_position={{ job.job_name }}&city={{ job.city_name }}'"/>
+                <input type="button" class="btn btn-primary" style="width:120px;" value="申请"
+                       onclick="location.href='/resume/add/?apply_position={{ job.job_name }}&city={{ job.city_name }}'"/>
 
             </div>
         {% else %}
