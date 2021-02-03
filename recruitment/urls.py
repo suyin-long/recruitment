@@ -21,6 +21,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^grappeli/', include('grappelli.urls')),
     url(r'^', include('jobs.urls')),
+    url(r'^accounts/', include('registration.backends.simple.urls')),
 ]
 
 admin.site.site_header = _('苏寅科技招聘管理系统')

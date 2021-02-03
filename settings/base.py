@@ -37,10 +37,15 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# registration
+LOGIN_REDIRECT_URL = '/'
+SIMPLE_BACKEND_REDIRECT_URL = '/accounts/login/'
+
 # Application definition
 
 INSTALLED_APPS = [
     'grappelli',
+    'registration',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

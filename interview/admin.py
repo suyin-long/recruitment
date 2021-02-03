@@ -68,7 +68,7 @@ class CandidateAdmin(admin.ModelAdmin):
         return request.user.has_perm('%s.%s' % (opts.app_label, "export"))
 
     list_display = ['username', 'city', 'bachelor_school', 'first_score', 'first_result', 'first_interviewer_user',
-                    'second_result', 'second_interviewer_user', 'hr_score', 'hr_result', 'last_editor']
+ 'second_result', 'second_interviewer_user', 'hr_score', 'hr_result', 'last_editor']
     # 筛选条件
     list_filter = ['city', 'first_result', 'second_result', 'hr_result', 'first_interviewer_user', 'second_interviewer_user', 'hr_interviewer_user']
     # 查询字段

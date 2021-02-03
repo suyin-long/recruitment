@@ -7,8 +7,17 @@
 
 ## 运行条件
 - 机器上有安装有Python和Django
-- Python 3.6.8 && Django 1.11.4 && django-grappelli-2.14.2 && django-python3-ldap && mysqlclient && DingtalkChatbot
 - [参考链接](https://docs.djangoproject.com/)
+
+## 主要依赖环境包
+
+- Python==3.6.8
+-  Django==1.11.4 
+- django-grappelli==2.14.2
+- django-python3-ldap==0.11.3
+- mysqlclient==2.0.3
+- DingtalkChatbot==1.5.2
+- django-registration-redux==1.10
 
 ## 如何运行
 本地和生产环境分别运行如下命令
