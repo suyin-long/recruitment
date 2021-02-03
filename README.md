@@ -9,7 +9,7 @@
 - 机器上有安装有Python和Django
 - [参考链接](https://docs.djangoproject.com/)
 
-## 主要依赖环境包
+## 主要依赖包
 
 - Python==3.6.8
 -  Django==1.11.4 
