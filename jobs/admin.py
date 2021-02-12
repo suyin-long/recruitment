@@ -35,7 +35,7 @@ def enter_interview_process(modeladmin, request, queryset):
 enter_interview_process.short_description = u"进入面试流程"
 
 class ResumeAdmin(admin.ModelAdmin):
-    # actions = (enter_interview_process,)
+    actions = (enter_interview_process,)
 
     def image_tag(self, obj):
         if obj.picture:
