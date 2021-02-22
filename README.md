@@ -19,6 +19,7 @@
 - DingtalkChatbot==1.5.2
 - django-registration-redux==2.9
 - django-bootstrap4==2.3.1
+- GNU gettext
 
 ## 如何运行
 本地和生产环境分别运行如下命令

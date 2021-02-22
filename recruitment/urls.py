@@ -14,6 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url, include
+from django.urls import path
 from django.contrib import admin
 from django.utils.translation import gettext as _
 
@@ -22,6 +23,7 @@ urlpatterns = [
     url(r'^grappeli/', include('grappelli.urls')),
     url(r'^', include('jobs.urls')),
     url(r'^accounts/', include('registration.backends.simple.urls')),
+    path('i18n/', include('django.conf.urls.i18n')),
 ]
 
 admin.site.site_header = _('苏寅科技招聘管理系统')
