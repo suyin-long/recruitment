@@ -19,7 +19,9 @@
 - DingtalkChatbot==1.5.2
 - django-registration-redux==2.9
 - django-bootstrap4==2.3.1
-- GNU gettext
+- [GNU gettext](https://www.gnu.org/software/gettext/)
+- [Sentry](https://github.com/getsentry/onpremise/releases)==[21.2.0](https://github.com/getsentry/onpremise/releases/tag/21.2.0)
+- sentry-sdk==0.20.3
 
 ## 如何运行
 本地和生产环境分别运行如下命令

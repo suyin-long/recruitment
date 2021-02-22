@@ -37,7 +37,7 @@ notify_interviewer.short_description = u'通知一面面试官'
 
 # define export action
 def export_model_as_csv(modeladmin, request, queryset):
-    response = HttpResponse(content_type='text/csv')
+    response = HttpResponse(content_type='text/csv', charset='utf-8-sig')
     field_list = exportable_fields
     response['Content-Disposition'] = 'attachment; filename=%s-list-%s.csv' % (
         'recruitment-candidates',
@@ -58,7 +58,8 @@ def export_model_as_csv(modeladmin, request, queryset):
             field_value = field_object.value_from_object(obj)
             csv_line_values.append(field_value)
         writer.writerow(csv_line_values)
-    logger.info("%s has exported %s candidate records" % (request.user.username, len(queryset)))
+    logger.error("%s has exported %s candidate records" % (request.user.username, len(queryset)))
+    print('********************')
 
     return response
 
