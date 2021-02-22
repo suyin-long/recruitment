@@ -1,17 +1,21 @@
+import logging
+
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.http import Http404
 from django.template import loader
-
 from django.contrib import messages
 from django.views.generic.detail import DetailView
+from django.views.generic.edit import CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import HttpResponseRedirect
 
 from jobs.models import Job, Resume
 from jobs.models import Cities, JobTypes
+
 # from jobs.forms import ResumeForm
-from django.views.generic.edit import CreateView
-from django.http import HttpResponseRedirect
+
+logger = logging.getLogger(__name__)
 
 
 # Create your views here.
@@ -32,10 +36,10 @@ def detail(request, job_id):
     return render(request, 'job.html', {'job': job})
 
 
-# class ResumeDetailView(DetailView):
-#     """   简历详情页    """
-#     model = Resume
-#     template_name = 'resume_detail.html'
+class ResumeDetailView(DetailView):
+    """   简历详情页    """
+    model = Resume
+    template_name = 'resume_detail.html'
 
 
 class ResumeCreateView(LoginRequiredMixin, CreateView):

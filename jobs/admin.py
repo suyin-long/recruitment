@@ -1,12 +1,12 @@
+from datetime import datetime
+
 from django.contrib import admin
 from django.utils.html import format_html
-
-from interview.models import Candidate
 from django.contrib import messages
-from datetime import datetime
 
 from jobs.models import Job
 from jobs.models import Resume
+from interview.models import Candidate
 
 
 # Register your models here.
@@ -17,6 +17,7 @@ class JobAdmin(admin.ModelAdmin):
     def save_model(self, request, obj, form, change):
         obj.creator = request.user
         super().save_model(request, obj, form, change)
+
 
 def enter_interview_process(modeladmin, request, queryset):
     candidate_names = ""
@@ -29,10 +30,11 @@ def enter_interview_process(modeladmin, request, queryset):
         candidate_names = candidate.username + "," + candidate_names
         candidate.creator = request.user.username
         candidate.save()
-    messages.add_message(request, messages.INFO, '候选人: %s 已成功进入面试流程' % (candidate_names) )
+    messages.add_message(request, messages.INFO, '候选人: %s 已成功进入面试流程' % (candidate_names))
 
 
 enter_interview_process.short_description = u"进入面试流程"
+
 
 class ResumeAdmin(admin.ModelAdmin):
     actions = (enter_interview_process,)
@@ -46,8 +48,8 @@ class ResumeAdmin(admin.ModelAdmin):
     image_tag.short_description = 'Image'
 
     list_display = (
-    'username', 'applicant', 'city', 'apply_position', 'bachelor_school', 'master_school', 'image_tag', 'major',
-    'created_date')
+        'username', 'applicant', 'city', 'apply_position', 'bachelor_school', 'master_school', 'image_tag', 'major',
+        'created_date')
 
     readonly_fields = ('applicant', 'created_date', 'modified_date',)
 

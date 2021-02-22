@@ -231,8 +231,8 @@ AUTHENTICATION_BACKENDS = {"django_python3_ldap.auth.LDAPBackend", 'django.contr
 DINGTALK_WEB_HOOK = "https://oapi.dingtalk.com/robot/send?access_token=e1de0e4f0c274f7eb3e66e2490bac10454ca33111f550e847b17641566e9aac2"
 
 # django-bootstrap4配置
-# BOOTSTRAP4 = {
-#     "css_url": {
-#         "href": "https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css",
-#     },
-# }
+BOOTSTRAP4 = {
+    "css_url": {
+        "href": "https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css",
+    },
+}

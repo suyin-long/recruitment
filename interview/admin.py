@@ -1,18 +1,24 @@
 import csv
 import logging
 from datetime import datetime
+
 from django.db.models import Q
 from django.contrib import admin
 from django.contrib import messages
 from django.http import HttpResponse
+from django.utils.safestring import mark_safe
 
 from interview.models import Candidate
 from interview import candidate_fieldset as cf
 from interview import dingtalk
+from jobs.models import Resume
 
 logger = logging.getLogger(__name__)
 
-exportable_fields = ('username', 'city', 'phone', 'bachelor_school', 'master_school', 'degree', 'first_result', 'first_interviewer_user', 'second_result', 'second_interviewer_user', 'hr_result', 'hr_score', 'hr_remark', 'hr_interviewer_user')
+exportable_fields = (
+    'username', 'city', 'phone', 'bachelor_school', 'master_school', 'degree', 'first_result', 'first_interviewer_user',
+    'second_result', 'second_interviewer_user', 'hr_result', 'hr_score', 'hr_remark', 'hr_interviewer_user')
+
 
 # 通知一面面试官面试
 def notify_interviewer(modeladmin, request, queryset):
@@ -22,11 +28,12 @@ def notify_interviewer(modeladmin, request, queryset):
         candidates = obj.username + ";" + candidates
         interviewers = obj.first_interviewer_user.username + ";" + interviewers
     # 这里的消息发送到钉钉， 或者通过 Celery 异步发送到钉钉
-    dingtalk.send("候选人 %s 进入面试环节，亲爱的面试官，请准备好面试： %s" % (candidates, interviewers) )
+    dingtalk.send("候选人 %s 进入面试环节，亲爱的面试官，请准备好面试： %s" % (candidates, interviewers))
     messages.info(request, '已经成功发送面试通知')
 
 
 notify_interviewer.short_description = u'通知一面面试官'
+
 
 # define export action
 def export_model_as_csv(modeladmin, request, queryset):
@@ -55,8 +62,10 @@ def export_model_as_csv(modeladmin, request, queryset):
 
     return response
 
+
 export_model_as_csv.short_description = u'导出为CSV文件'
 export_model_as_csv.allowed_permissions = ['export']
+
 
 # Register your models here.
 # 候选人管理类
@@ -69,14 +78,26 @@ class CandidateAdmin(admin.ModelAdmin):
         opts = self.opts
         return request.user.has_perm('%s.%s' % (opts.app_label, "export"))
 
-    list_display = ['username', 'city', 'bachelor_school', 'first_score', 'first_result', 'first_interviewer_user',
- 'second_result', 'second_interviewer_user', 'hr_score', 'hr_result', 'last_editor']
+    list_display = ['username', 'city', 'bachelor_school', 'get_resume', 'first_score', 'first_result', 'first_interviewer_user',
+                    'second_result', 'second_interviewer_user', 'hr_score', 'hr_result', 'last_editor']
     # 筛选条件
-    list_filter = ['city', 'first_result', 'second_result', 'hr_result', 'first_interviewer_user', 'second_interviewer_user', 'hr_interviewer_user']
+    list_filter = ['city', 'first_result', 'second_result', 'hr_result', 'first_interviewer_user',
+                   'second_interviewer_user', 'hr_interviewer_user']
     # 查询字段
-    search_fields = ['username', 'phone', 'email', 'bachelor_school',]
+    search_fields = ['username', 'phone', 'email', 'bachelor_school', ]
     # 排序字段
     ordering = ['hr_result', 'second_result', 'first_result']
+
+    def get_resume(self, obj):
+        if not obj.phone:
+            return ""
+        resumes = Resume.objects.filter(phone=obj.phone)
+        if resumes and len(resumes) > 0:
+            return mark_safe(u'<a href="/resume/%s" target="_blank">%s</a' % (resumes[0].id, "查看简历"))
+        return ""
+
+    get_resume.short_description = '查看简历'
+    get_resume.allow_tags = True
 
     def get_group_names(self, user):
         group_names = []
@@ -86,6 +107,7 @@ class CandidateAdmin(admin.ModelAdmin):
 
     # 指定那些字段可以直接编辑
     default_list_editable = ['first_interviewer_user', 'second_interviewer_user']
+
     def get_list_editable(self, request):
         group_names = self.get_group_names(request.user)
 

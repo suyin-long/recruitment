@@ -11,8 +11,8 @@
 
 ## 主要依赖包
 
-- Python==3.6.12
--  Django==3.1.6
+- Python==3.8.5
+-  Django==3.1.7
 - django-grappelli==2.14.2
 - django-python3-ldap==0.11.3
 - mysqlclient==2.0.3
