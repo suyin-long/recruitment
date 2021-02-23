@@ -29,6 +29,7 @@
 - celery==[5.0.5](https://docs.celeryproject.org/en/stable/getting-started/introduction.html#installation)
 - [flower](https://docs.celeryproject.org/en/stable/userguide/monitoring.html#usage)==0.9.7
 - django-celery-beat==2.2.0
+- django-oss-storage==1.1.1
 
 ## 如何运行
 本地和生产环境分别运行如下命令

@@ -8,15 +8,17 @@
 {# Display django.contrib.messages as Bootstrap alerts #}
 {% bootstrap_messages %}
 
-<h1>提交简历</h1>
+<h1 style="text-align: center">提交简历</h1>
 
-<form method="post" method="post" class="form" enctype="multipart/form-data" style="width:600px;margin-left:5px">
-    {% csrf_token %}
-    {% bootstrap_form form %}
+<div class="container">
+    <form method="post" method="post" class="form" enctype="multipart/form-data" style="width:600px;margin-left:5px">
+        {% csrf_token %}
+        {% bootstrap_form form %}
 
-    {% buttons %}
-        <button type="submit" class="btn btn-primary">
-            提交
-        </button>
-    {% endbuttons %}
-</form>
+        {% buttons %}
+            <button type="submit" class="btn btn-primary">
+                提交
+            </button>
+        {% endbuttons %}
+    </form>
+</div>

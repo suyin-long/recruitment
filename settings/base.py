@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     'interview',
     'rest_framework',
     'django_celery_beat',
+    'django_oss_storage',
 ]
 
 MIDDLEWARE = [
@@ -154,6 +155,9 @@ LOCALE_PATHS = (
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+# STATIC_ROOT = 'static'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
 
 LOGGING = {
     'version': 1,
@@ -314,3 +318,21 @@ CELERY_TIMEZONE = 'Asia/Shanghai'
 CELERYD_MAX_TASKS_PER_CHILD = 10
 CELERYD_LOG_FILE = os.path.join(BASE_DIR, "logs", "celery_work.log")
 CELERYBEAT_LOG_FILE = os.path.join(BASE_DIR, "logs", "celery_beat.log")
+
+# 阿里云 CDN 存储静态资源文件 & 阿里云存储上传的图片/文件
+# STATICFILES_STORAGE = 'django_oss_storage.backends.OssStaticStorage'
+
+DEFAULT_FILE_STORAGE = 'django_oss_storage.backends.OssMediaStorage'
+print('*' * 60)
+# AliCloud access key ID
+OSS_ACCESS_KEY_ID = os.environ.get('OSS_ACCESS_KEY_ID', '')
+print(OSS_ACCESS_KEY_ID)
+# AliCloud access key secret
+OSS_ACCESS_KEY_SECRET = os.environ.get('OSS_ACCESS_KEY_SECRET', '')
+print(OSS_ACCESS_KEY_SECRET)
+# The name of the bucket to store files in
+OSS_BUCKET_NAME = 'django3-recruitment'
+print('*' * 60)
+# The URL of AliCloud OSS endpoint
+# Refer https://www.alibabacloud.com/help/zh/doc-detail/31837.htm for OSS Region & Endpoint
+OSS_ENDPOINT = 'oss-cn-beijing.aliyuncs.com'

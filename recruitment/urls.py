@@ -18,6 +18,8 @@ from django.urls import path
 from django.contrib import admin
 from django.utils.translation import gettext as _
 from django.contrib.auth.models import User
+from django.conf import settings
+from django.conf.urls.static import static
 
 from jobs.models import Job
 from rest_framework import routers, serializers, viewsets
@@ -65,5 +67,8 @@ urlpatterns = [
     path('api/', include(router.urls)),
     path('api-auth/', include('rest_framework.urls')),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 admin.site.site_header = _('苏寅科技招聘管理系统')
