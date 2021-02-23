@@ -12,6 +12,8 @@ def trigger_error(request):
 urlpatterns = [
     # 职位列表
     url(r'^joblist/$', views.joblist, name='joblist'),
+    # 管理员创建 HR 账号的页面:
+    path('create_hr_user/', views.create_hr_user, name='create_hr_user'),
     # 职位详情
     url(r'^job/(?P<job_id>\d+)/$', views.detail, name='detail'),
     # url(r'^job/<int:job_id>/$', views.detail, name='detail'),

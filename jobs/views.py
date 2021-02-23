@@ -10,6 +10,10 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
+from django.contrib.auth.decorators import permission_required, login_required
+from django.contrib.auth.models import User
+from django.contrib.auth.models import Group
+from django.views.decorators.csrf import csrf_exempt
 
 from jobs.models import Job, Resume
 from jobs.models import Cities, JobTypes
@@ -41,6 +45,27 @@ class ResumeDetailView(DetailView):
     """   简历详情页    """
     model = Resume
     template_name = 'resume_detail.html'
+
+
+# 这个 URL 仅允许有创建用户权限的用户访问
+# @csrf_exempt
+@permission_required('auth.user_add')
+def create_hr_user(request):
+    if request.method == "GET":
+        return render(request, 'create_hr.html', {})
+    if request.method == "POST":
+        username = request.POST.get("username")
+        password = request.POST.get("password")
+
+        hr_group = Group.objects.get(name='HR')
+        user = User(is_superuser=False, username=username, is_active=True, is_staff=True)
+        user.set_password(password)
+        user.save()
+        user.groups.add(hr_group)
+
+        messages.add_message(request, messages.INFO, 'user created %s' % username)
+        return render(request, 'create_hr.html')
+    return render(request, 'create_hr.html')
 
 
 # 直接返回HTML内容的视图 （这段代码返回的页面有XSS漏洞，能够被攻击者利用）
