@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     'django_python3_ldap',
     'jobs.apps.JobsConfig',
     'interview',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -260,3 +261,11 @@ sentry_sdk.init(
     # django.contrib.auth) you may enable sending PII data.
     send_default_pii=True
 )
+
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}

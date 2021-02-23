@@ -22,6 +22,9 @@
 - [GNU gettext](https://www.gnu.org/software/gettext/)
 - [Sentry](https://github.com/getsentry/onpremise/releases)==[21.2.0](https://github.com/getsentry/onpremise/releases/tag/21.2.0)
 - sentry-sdk==0.20.3
+- djangorestframework==3.12.2
+- Markdown==3.3.3
+- django-filter==2.4.0
 
 ## 如何运行
 本地和生产环境分别运行如下命令
