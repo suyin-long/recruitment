@@ -1,5 +1,7 @@
 from django.conf.urls import url
 from django.urls import path
+from django.conf import settings
+
 from jobs import views
 
 
@@ -21,3 +23,7 @@ urlpatterns = [
     # sentry路由
     path('sentry-debug/', trigger_error),
 ]
+
+if settings.DEBUG:
+    # 有 XSS 漏洞的视图页面，
+    urlpatterns += [url(r'^detail_resume/(?P<resume_id>\d+)/$', views.detail_resume, name='detail_resume'), ]
