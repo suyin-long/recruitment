@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     'jobs.apps.JobsConfig',
     'interview',
     'rest_framework',
+    'django_celery_beat',
 ]
 
 MIDDLEWARE = [

@@ -28,13 +28,20 @@
 - django-redis==4.12.1
 - celery==[5.0.5](https://docs.celeryproject.org/en/stable/getting-started/introduction.html#installation)
 - [flower](https://docs.celeryproject.org/en/stable/userguide/monitoring.html#usage)==0.9.7
+- django-celery-beat==2.2.0
 
 ## 如何运行
 本地和生产环境分别运行如下命令
 - `python3 ./manage.py runserver 127.0.0.1:8000 --settings=settings.local`
 - `python3 ./manage.py runserver 127.0.0.1:8000 --settings=settings.production`
 
+celery和flower启动
+
+- `celery -A recruitment worker -l info -P eventlet`
+- `celery -A recruitment flower`
+
 然后可以通过访问如下两个页面
+
 - [首页](http://127.0.0.1:8000)
 - [管理后台](http://127.0.0.1:8000/admin)
 
