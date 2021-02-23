@@ -61,11 +61,14 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    # sentry
     'interview.performance.PerformanceAndExceptionLoggerMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
+    # 缓存
+    'django.middleware.cache.FetchFromCacheMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -268,4 +271,34 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
     ]
+}
+
+# CACHES_local = {
+#     'default': {
+#         'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+#         'LOCATION': 'unique-snowflake',
+#         'TIMEOUT': 60,
+#         'OPTIONS': {
+#             'MAX_ENTRIES': 10000,
+#             'KEY_PREFIX': 'recruit-',
+#         }
+#     }
+# }
+
+# CACHE_MIDDLEWARE_SECONDS = 60  # default cache time for the whole website
+# redis cache is disabled, change "CACHES_redis" to "CACHES" to enable it
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://123.207.147.235:6379/2",
+        "TIMEOUT": 60,  # default expire time per api call
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+            "PASSWORD": "021808..",
+            "SOCKET_CONNECT_TIMEOUT": 5,  # in seconds
+            "SOCKET_TIMEOUT": 5,  # r/w timeout in seconds
+            # 'MAX_ENTRIES': 10000,
+            # 'KEY_PREFIX': 'recruit-',
+        }
+    }
 }

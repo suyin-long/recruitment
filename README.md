@@ -25,6 +25,7 @@
 - djangorestframework==3.12.2
 - Markdown==3.3.3
 - django-filter==2.4.0
+- django-redis==4.12.1
 
 ## 如何运行
 本地和生产环境分别运行如下命令
