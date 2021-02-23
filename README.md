@@ -26,6 +26,8 @@
 - Markdown==3.3.3
 - django-filter==2.4.0
 - django-redis==4.12.1
+- celery==[5.0.5](https://docs.celeryproject.org/en/stable/getting-started/introduction.html#installation)
+- [flower](https://docs.celeryproject.org/en/stable/userguide/monitoring.html#usage)==0.9.7
 
 ## 如何运行
 本地和生产环境分别运行如下命令
