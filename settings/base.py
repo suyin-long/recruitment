@@ -55,7 +55,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_python3_ldap',
-    'jobs.apps.JobsConfig',
+    # 'jobs', ## 应用不能重复注册，下面一行是手工注册 JobConfig
+    'jobs.apps.JobConfig',
     'interview',
     'rest_framework',
     'django_celery_beat',
@@ -323,16 +324,12 @@ CELERYBEAT_LOG_FILE = os.path.join(BASE_DIR, "logs", "celery_beat.log")
 # STATICFILES_STORAGE = 'django_oss_storage.backends.OssStaticStorage'
 
 DEFAULT_FILE_STORAGE = 'django_oss_storage.backends.OssMediaStorage'
-print('*' * 60)
 # AliCloud access key ID
 OSS_ACCESS_KEY_ID = os.environ.get('OSS_ACCESS_KEY_ID', '')
-print(OSS_ACCESS_KEY_ID)
 # AliCloud access key secret
 OSS_ACCESS_KEY_SECRET = os.environ.get('OSS_ACCESS_KEY_SECRET', '')
-print(OSS_ACCESS_KEY_SECRET)
 # The name of the bucket to store files in
 OSS_BUCKET_NAME = 'django3-recruitment'
-print('*' * 60)
 # The URL of AliCloud OSS endpoint
 # Refer https://www.alibabacloud.com/help/zh/doc-detail/31837.htm for OSS Region & Endpoint
 OSS_ENDPOINT = 'oss-cn-beijing.aliyuncs.com'
