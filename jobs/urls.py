@@ -1,6 +1,9 @@
+import debug_toolbar
 from django.conf.urls import url
 from django.urls import path
 from django.conf import settings
+from django.conf import settings
+from django.urls import include, path
 
 from jobs import views
 
@@ -24,7 +27,14 @@ urlpatterns = [
     url(r'^$', views.joblist, name='name'),
     # sentry路由
     path('sentry-debug/', trigger_error),
+    # path('__debug__/', include(debug_toolbar.urls)),
 ]
+
+# debug_toolbar
+# if settings.DEBUG:
+#     urlpatterns = [
+#                       path('__debug__/', include(debug_toolbar.urls)),
+#                   ] + urlpatterns
 
 if settings.DEBUG:
     # 有 XSS 漏洞的视图页面，

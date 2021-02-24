@@ -45,7 +45,8 @@ SIMPLE_BACKEND_REDIRECT_URL = '/accounts/login/'
 # Application definition
 
 INSTALLED_APPS = [
-    'grappelli',
+    # 'grappelli',
+    'simpleui',
     'bootstrap4',
     'registration',
     'django.contrib.admin',
@@ -61,11 +62,19 @@ INSTALLED_APPS = [
     'rest_framework',
     'django_celery_beat',
     'django_oss_storage',
+    # 'debug_toolbar',
 ]
+
+# debug_toolbar
+# INTERNAL_IPS = [
+#     '127.0.0.1',
+# ]
 
 MIDDLEWARE = [
     # sentry
     'interview.performance.PerformanceAndExceptionLoggerMiddleware',
+    # debug_toolbar
+    # 'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',

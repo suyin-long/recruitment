@@ -13,7 +13,7 @@
 
 - Python==3.8.5
 -  Django==3.1.7
-- django-grappelli==2.14.2
+- django-grappelli==2.14.3
 - django-python3-ldap==0.11.3
 - mysqlclient==2.0.3
 - DingtalkChatbot==1.5.2
@@ -30,6 +30,9 @@
 - [flower](https://docs.celeryproject.org/en/stable/userguide/monitoring.html#usage)==0.9.7
 - django-celery-beat==2.2.0
 - django-oss-storage==1.1.1
+- django-debug-toolbar==3.2
+- django-simpleui==2021.3
+- django-haystack==3.0
 
 ## 如何运行
 本地和生产环境分别运行如下命令
