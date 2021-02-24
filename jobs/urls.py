@@ -35,7 +35,3 @@ urlpatterns = [
 #     urlpatterns = [
 #                       path('__debug__/', include(debug_toolbar.urls)),
 #                   ] + urlpatterns
-
-if settings.DEBUG:
-    # 有 XSS 漏洞的视图页面，
-    urlpatterns += [url(r'^detail_resume/(?P<resume_id>\d+)/$', views.detail_resume, name='detail_resume'), ]
