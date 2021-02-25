@@ -45,8 +45,8 @@ SIMPLE_BACKEND_REDIRECT_URL = '/accounts/login/'
 # Application definition
 
 INSTALLED_APPS = [
-    # 'grappelli',
-    'simpleui',
+    'grappelli',
+    # 'simpleui',
     'bootstrap4',
     'registration',
     'django.contrib.admin',
@@ -63,6 +63,7 @@ INSTALLED_APPS = [
     'django_celery_beat',
     'django_oss_storage',
     # 'debug_toolbar',
+    'captcha',
 ]
 
 # debug_toolbar
@@ -92,8 +93,8 @@ ROOT_URLCONF = 'recruitment.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR, 'templates']
-        ,
+        'DIRS': [BASE_DIR, 'templates'],
+        # 'DIRS': [os.path.join(BASE_DIR, 'recruitment/templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -166,6 +167,7 @@ LOCALE_PATHS = (
 
 STATIC_URL = '/static/'
 # STATIC_ROOT = 'static'
+# STATICFILES_STORAGE = 'django_oss_storage.backends.0ssStaticStorage'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 

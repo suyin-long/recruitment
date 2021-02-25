@@ -30,6 +30,7 @@ urlpatterns = [
     # path('__debug__/', include(debug_toolbar.urls)),
 ]
 
+
 # debug_toolbar
 # if settings.DEBUG:
 #     urlpatterns = [

@@ -33,6 +33,8 @@
 - django-debug-toolbar==3.2
 - django-simpleui==2021.3
 - django-haystack==3.0
+- django-simple-captcha==0.5.13
+- django-ratelimit==3.0.1
 
 ## 如何运行
 本地和生产环境分别运行如下命令

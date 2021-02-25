@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <form method="post" style="margin-left: 10px;">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <div class="form-actions">
+            <input type="submit" class="btn btn-primary" style="width:120px;" value="登录"/>
+        </div>
+    </form>
+{% endblock %}

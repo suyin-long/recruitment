@@ -23,6 +23,7 @@ from django.conf.urls.static import static
 
 from jobs.models import Job
 from rest_framework import routers, serializers, viewsets
+from . import views
 
 
 # Serializers define the API representation.
@@ -58,7 +59,6 @@ router.register(r'users', UserViewSet)
 router.register(r'jobs', JobViewSet)
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
     url(r'^grappeli/', include('grappelli.urls')),
     url(r'^', include('jobs.urls')),
     url(r'^accounts/', include('registration.backends.simple.urls')),
@@ -66,6 +66,11 @@ urlpatterns = [
     # django rest api & api auth (login/logout)
     path('api/', include(router.urls)),
     path('api-auth/', include('rest_framework.urls')),
+    # 使用 login_with_captcha 作为管理员的登陆页
+    url(r'^admin/login/?$', views.login_with_captcha, name='adminlogin'),
+    url(r'^admin/', admin.site.urls),
+    path('captcha/', include('captcha.urls')),
+    path("clogin/", views.login_with_captcha, name="clogin"),
 ]
 
 if settings.DEBUG:
